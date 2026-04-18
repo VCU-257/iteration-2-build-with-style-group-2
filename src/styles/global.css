@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@600..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap');
+
+:root {
+    --mint: #78c2ad;
+    --cotton-candy: #f3969a;
+    --twilight-indigo: #414770;
+    --graphite: #2c2c2c;
+    --white: #fcfcfc;
+    --primary: var(--mint);
+    --secondary: var(--cotton-candy);
+    --tertiary: var(--twilight-indigo);
+    --dark: var(--graphite);
+    --light: var(--white);
+    --text: var(--white);
+}
+
+p, a:not(.nav-link, .navbar-brand) {
+    font-family: "Funnel Display", sans-serif;
+}
+
+a.nav-link, a.navbar-brand {
+    font-family: "Montserrat", sans-serif;
+}
+
+h1 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+}
+
+h2, h3, h4, h5, h6 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+}
