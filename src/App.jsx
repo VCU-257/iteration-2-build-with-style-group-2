@@ -12,7 +12,7 @@ import MobileNavbar from "./components/MobileNavbar";
 
 export default function App() {
     return (
-        <div className="app">
+        <div className="app mb-5 mb-lg-3">
             <DesktopNavbar />
             <Routes>
                 <Route path="/" element={<Home />} />

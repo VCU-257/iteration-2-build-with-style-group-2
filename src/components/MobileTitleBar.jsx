@@ -3,7 +3,7 @@ import { ArrowLeft } from "react-bootstrap-icons";
 
 export default function MobileTitleBar({ pageTitle, backButtonHref }) {
     return (
-        <Navbar bg="light" expand="lg" className="d-lg-none" fixed="top">
+        <Navbar bg="light" expand="lg" className="d-lg-none" sticky="top">
             <Container fluid>
                 {backButtonHref ? 
                     <Nav.Link href={backButtonHref} color="var(--text)">
@@ -11,7 +11,7 @@ export default function MobileTitleBar({ pageTitle, backButtonHref }) {
                     </Nav.Link>
                 : ""}
                 
-                <h5 class="page m-auto">{pageTitle}</h5>
+                <h5 class="page m-auto py-4">{pageTitle}</h5>
             </Container>
         </Navbar>
     )

@@ -24,7 +24,7 @@ export default function DesktopNavbar() {
     }
 
     return (
-        <>
+        <div className="sticky-top">
             <Navbar bg="primary" expand="lg" className="d-none d-lg-block">
                 <Container fluid>
                     <Navbar.Brand href="/">CreditBrand</Navbar.Brand>
@@ -39,6 +39,6 @@ export default function DesktopNavbar() {
                 </Container>
             </Navbar>
             <Breadcrumbs titleAndHrefArray={titleAndHrefArray} />
-        </>
+        </div>
     );
 }
