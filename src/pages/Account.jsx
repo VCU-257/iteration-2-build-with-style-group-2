@@ -7,7 +7,7 @@ import MobileTitleBar from "../components/MobileTitleBar";
 
 export default function Account() {
     const [accountInfo, setAccountInfo] = useState([{
-        name: "Credit Account",
+        accountName: "Credit Account",
         limit: 0,
         balance: 0,
         apr: 0,
@@ -17,7 +17,7 @@ export default function Account() {
 
     function handleAddFieldset() {
         setAccountInfo([...accountInfo, {
-            name: "Credit Account",
+            accountName: "Credit Account",
             limit: 0,
             balance: 0,
             apr: 0,
@@ -33,7 +33,7 @@ export default function Account() {
             <MobileTitleBar pageTitle="Edit Account Information" />
             <Container fluid>
                 <Form>
-                    {accountInfo.map((info, index) => <CreditAccountFieldset accountInfo={info} allAccountInfo={accountInfo} setAccountInfoCallback={(allAccountInfo) => setAccountInfo(allAccountInfo)} index={index} />)}
+                    {accountInfo.map((info, index) => <CreditAccountFieldset accountInfo={info} allAccountInfo={accountInfo} setAccountInfo={setAccountInfo} index={index} key={index} />)}
                 </Form>
                 <Button onClick={handleAddFieldset} className="bg-secondary border-none d-flex align-items-center"><PlusCircle className="me-2" />Add Account</Button>
             </Container>
