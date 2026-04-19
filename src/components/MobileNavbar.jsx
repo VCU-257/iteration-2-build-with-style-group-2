@@ -3,7 +3,7 @@ import { Archive, House, PersonVcard } from "react-bootstrap-icons";
 
 export default function MobileNavbar() {
     return (
-        <Navbar bg="primary" expand="lg" className="d-lg-none mt-3" fixed="bottom">
+        <Navbar bg="primary" expand="lg" className="d-lg-none mt-3 mobile-navbar" fixed="bottom">
             <Container className="justify-content-around text-center" fluid>
                 <Nav.Link href="/">
                     <House />

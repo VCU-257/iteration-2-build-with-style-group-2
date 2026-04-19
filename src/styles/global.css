@@ -16,7 +16,7 @@
 }
 
 /* This selects all p and a tags except navbar links, navbar brand, and breadcrumb links. */
-p, a:not(.nav-link, .navbar-brand, .breadcrumb-item >) {
+p, a:not(.nav-link, .navbar-brand, .breadcrumb-item > a) {
     font-family: "Funnel Display", sans-serif;
 }
 
@@ -41,5 +41,9 @@ h2, h3, h4, h5, h6 {
 
 /* This selects breadcrumb links, active breadcrumbs, and the slashes between breadcrumbs */
 .breadcrumb-item a, .breadcrumb-item.active, .breadcrumb-item+.breadcrumb-item::before{
+    color: var(--dark);
+}
+
+.mobile-navbar a {
     color: var(--dark);
 }
