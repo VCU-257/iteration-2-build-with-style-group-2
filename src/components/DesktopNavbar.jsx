@@ -4,21 +4,22 @@ import { useLocation } from "react-router";
 
 export default function DesktopNavbar() {
     const location = useLocation();
-    const baseURL = import.meta.env.BASE_URL;
+    const baseURL = import.meta.env.BASE_URL.includes("#") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}#/`;
     const titleAndHrefArray = [{title: "Home", href: ""}]
     let activePage = "home"
+    console.log(baseURL)
 
-    switch(location.pathname.replace(baseURL, "")) {
-        case "finances":
+    switch(location.pathname) {
+        case "/finances":
             titleAndHrefArray.push({title: "Finances"});
             activePage = "finances";
             break;
-        case "finances/fico":
+        case "/finances/fico":
             titleAndHrefArray.push({title: "Finances", href: "finances"});
             titleAndHrefArray.push({title: "FICO"});
             activePage = "finances";
             break;
-        case "account":
+        case "/account":
             titleAndHrefArray.push({title: "Account"});
             activePage = "account";
             break;

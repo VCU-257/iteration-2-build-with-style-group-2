@@ -1,7 +1,7 @@
 import { Breadcrumb } from "react-bootstrap";
 
 export default function Breadcrumbs({ titleAndHrefArray }) {
-    const baseURL = import.meta.env.BASE_URL;
+    const baseURL = import.meta.env.BASE_URL.includes("#") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}#/`;
 
     return (
         <Breadcrumb expand="lg" className="d-none d-lg-block">
