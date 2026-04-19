@@ -7,7 +7,6 @@ export default function DesktopNavbar() {
     const baseURL = import.meta.env.BASE_URL.includes("#") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}#/`;
     const titleAndHrefArray = [{title: "Home", href: ""}]
     let activePage = "home"
-    console.log(baseURL)
 
     switch(location.pathname) {
         case "/finances":
