@@ -15,10 +15,10 @@ export default function App() {
         <div className="app mb-5 mb-lg-3">
             <DesktopNavbar />
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/finances" element={<Finances />} />
-                <Route path="/finances/fico" element={<FICO />} />
-                <Route path="/account" element={<Account />} />
+                <Route index element={<Home />} />
+                <Route path="finances" element={<Finances />} />
+                <Route path="finances/fico" element={<FICO />} />
+                <Route path="account" element={<Account />} />
             </Routes>
             <MobileNavbar />
         </div>

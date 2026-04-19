@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import "../styles/finances.css";
 import MobileTitleBar from "../components/MobileTitleBar";
 import FinancesCards from "../components/FinancesCards";
@@ -5,6 +6,11 @@ import { Button, Container, Form, Row } from "react-bootstrap";
 import { href } from "react-router";
 
 export default function Finances() {
+    /* Change the page title on page load */
+    useEffect(() => {
+        document.title = "Finances";
+    }, []);
+
     return (
         <div className="finances-page ">
             <MobileTitleBar pageTitle="Finances" backButtonHref={"/"} />

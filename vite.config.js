@@ -4,6 +4,7 @@ import babel from '@rolldown/plugin-babel'
 
 // https://vite.dev/config/
 export default defineConfig({
+    base: "/iteration-2-build-with-style-group-2/#",
     server: {
         port: 3000
     },
