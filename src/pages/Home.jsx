@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "../styles/home.css";
+import MobileTitleBar from "../components/MobileTitleBar";
 
 export default function Home() {
 
@@ -18,7 +19,7 @@ export default function Home() {
         <div className="home-page">
 
             {/* navbar */}
-            <nav className="navbar navbar-expand-lg navbar-dark custom-navbar">
+            {/* <nav className="navbar navbar-expand-lg navbar-dark custom-navbar">
                 <div className="container">
                     <a className="navbar-brand fw-bold" href="#">CreditBrand</a>
 
@@ -35,7 +36,8 @@ export default function Home() {
                         </ul>
                     </div>
                 </div>
-            </nav>
+            </nav> */}
+            <MobileTitleBar pageTitle="Home" />
 
             {/* main */}
             <div className="container py-5">
