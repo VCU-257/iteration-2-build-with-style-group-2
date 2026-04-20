@@ -65,6 +65,14 @@ export default function CreditAccountFieldset({accountInfo, setAccountInfo, inde
                     <InputGroup.Text>{accountInfo.age === 1 ? "Month" : "Months"}</InputGroup.Text>
                 </InputGroup>
             </Form.Group>
+            <Form.Group as={Row} className="mb-3 d-flex align-items-center">
+                <Col xs={6}>
+                    <Form.Label>Missed/Late Payments</Form.Label>
+                </Col>
+                <Col>
+                    <Form.Control value={accountInfo.missedPayments} type="number" placeholder="0" min={0} onChange={handleInputChange} name="missedPayments" />
+                </Col>
+            </Form.Group>
         </fieldset>
     );
 }
