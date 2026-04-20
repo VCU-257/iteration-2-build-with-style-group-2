@@ -1,20 +1,26 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "../styles/home.css";
 import MobileTitleBar from "../components/MobileTitleBar";
+import { useFicoScoreDetails } from "../hooks";
 
 export default function Home() {
     const baseURL = import.meta.env.BASE_URL.includes("#") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}#/`;
-    const [score, setScore] = useState(720);
+
 
     useEffect(() => {
         document.title = "Home";
     }, []);
 
-    function refreshScore() {
-        const newScore = Math.floor(Math.random() * (850 - 600) + 600);
-        setScore(newScore);
-    }
+    const ficoDetails = useFicoScoreDetails();
+    const score = isNaN(parseInt(ficoDetails.score)) ? 0 : ficoDetails.score;
 
+      const getLabel = (score) => {
+        if (score < 580) return "Poor";
+        if (score < 670) return "Fair";
+        if (score < 740) return "Good";
+        if (score < 800) return "Very Good";
+        return "Exceptional";
+    }
     return (
         <div className="home-page">
 
@@ -41,7 +47,6 @@ export default function Home() {
 
             {/* main */}
             <div className="container py-5">
-                
                 <div className="text-center mb-5">
                     <h1 className="fw-bold">Welcome Back</h1>
                     <p className="text-muted">Manage your credit and finances easily</p>
@@ -60,7 +65,7 @@ export default function Home() {
                     </div>
 
                     <div className="col-6 col-md-3">
-                        <a href={`${baseURL}account`}  className="action-link">
+                        <a href={`${baseURL}account-info`} className="action-link">
                             <div className="card p-3 action-card">
                                 <i className="bi bi-person fs-1 mb-2"></i>
                                 <h6>Accounts</h6>
@@ -69,7 +74,11 @@ export default function Home() {
                     </div>
 
                     <div className="col-6 col-md-3">
-                        <a href="#" className="action-link">
+                        <a
+                            href="#"
+                            className="action-link"
+                            onClick={(e) => e.preventDefault()}
+                        >
                             <div className="card p-3 action-card">
                                 <i className="bi bi-credit-card fs-1 mb-2"></i>
                                 <h6>Cards</h6>
@@ -78,7 +87,11 @@ export default function Home() {
                     </div>
 
                     <div className="col-6 col-md-3">
-                        <a href="#" className="action-link">
+                        <a
+                            href="#"
+                            className="action-link"
+                            onClick={(e) => e.preventDefault()}
+                        >
                             <div className="card p-3 action-card">
                                 <i className="bi bi-cash fs-1 mb-2"></i>
                                 <h6>Loans</h6>
@@ -92,16 +105,14 @@ export default function Home() {
                 <div className="card text-center shadow-sm p-4">
 
                     <h4 className="mb-3">Your Credit Score</h4>
-
                     <div className="display-1 fw-bold text-primary">
-                        {score}
+                        {isNaN(parseInt(ficoDetails.score)) ? 
+                            <p className="fs-4 fw-normal">{ficoDetails.score}</p> : 
+                            ficoDetails.score}
                     </div>
-
-                    <p className="text-muted mb-3">Good standing</p>
-
-                    <button className="btn btn-secondary" onClick={refreshScore}>
-                        <i className="bi bi-arrow-repeat"></i> Refresh Score
-                    </button>
+                    <p className="text-muted mb-3">
+                        {getLabel(score)} standing
+                    </p>
 
                 </div>
 
