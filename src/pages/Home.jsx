@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "../styles/home.css";
 import MobileTitleBar from "../components/MobileTitleBar";
 import { useFicoScoreDetails } from "../hooks";
@@ -44,12 +44,10 @@ export default function Home() {
                     </div>
                 </div>
             </nav> */}
-
             <MobileTitleBar pageTitle="Home" />
 
             {/* main */}
             <div className="container py-5">
-
                 <div className="text-center mb-5">
                     <h1 className="fw-bold">Welcome Back</h1>
                     <p className="text-muted">Manage your credit and finances easily</p>

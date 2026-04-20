@@ -2,9 +2,7 @@ import { useEffect, useState } from "react";
 import MobileTitleBar from "../components/MobileTitleBar";
 import Card from "react-bootstrap/Card";
 import "../styles/fico.css";
-import { usePageTitle } from "../hooks";
-
-import { useFicoScoreDetails } from "../hooks";
+import { useFicoScoreDetails, usePageTitle } from "../hooks";
 
 // SCORE CARD
 function FICOScoreCard({ ficoScore }) {
@@ -157,11 +155,6 @@ export default function FICO() {
     /* Change the page title on page load */
     usePageTitle("FICO Score Detail");
 
-    // set page title on load
-    useEffect(() => {
-        document.title = "FICO Score Detail";
-    }, []);
-
     // get full fico details from hook
     const ficoDetails = useFicoScoreDetails();
     const currentScore = ficoDetails.score;
@@ -174,7 +167,7 @@ export default function FICO() {
 
     // update history when score changes
     useEffect(() => {
-        if (!currentScore) return;
+        if (isNaN(parseInt(currentScore))) return;
 
         setFicoHistory((prev) => {
 
@@ -201,7 +194,7 @@ export default function FICO() {
     const lastScore =
         ficoHistory.length > 1
             ? ficoHistory[ficoHistory.length - 2]
-            : currentScore;
+            : (isNaN(parseInt(currentScore)) ? 0 : currentScore);
 
     return (
         <div className="FICO-page">
@@ -213,7 +206,7 @@ export default function FICO() {
 
                     {/* main score card */}
                     <div className="col-12 col-lg-8">
-                        <FICOScoreCard ficoScore={currentScore} />
+                        <FICOScoreCard ficoScore={isNaN(parseInt(currentScore)) ? 0 : currentScore} />
                     </div>
 
                     {/* right / below section */}
