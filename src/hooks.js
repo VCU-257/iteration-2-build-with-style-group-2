@@ -10,6 +10,18 @@ export function usePageTitle(newTitle) {
 export function useFicoScoreDetails() {
     const savedAccountInfo = JSON.parse(localStorage.getItem("accountInfo"));
     const savedAdditionalInfo = JSON.parse(localStorage.getItem("additionalInfo"));
+    if(savedAccountInfo === null || savedAdditionalInfo === null) {
+        return {
+            score: "Please enter account info to see your score.",
+            paymentHistoryImpact: 0,
+            utilizationImpact: 0,
+            historyImpact: 0,
+            mixImpact: 0,
+            inquiryImpact: 0,
+            mostNegativeImpact: "paymentHistoryImpact",
+            mostPositiveImpact: "paymentHistoryImpact"
+        }
+    }
     const LOWEST_POSSIBLE_SCORE = 300;
     const HIGHEST_POSSIBLE_SCORE = 850;
     let score = LOWEST_POSSIBLE_SCORE; // Base score

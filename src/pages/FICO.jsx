@@ -167,7 +167,7 @@ export default function FICO() {
 
     // update history when score changes
     useEffect(() => {
-        if (!currentScore) return;
+        if (isNaN(parseInt(currentScore))) return;
 
         setFicoHistory((prev) => {
 
@@ -194,7 +194,7 @@ export default function FICO() {
     const lastScore =
         ficoHistory.length > 1
             ? ficoHistory[ficoHistory.length - 2]
-            : currentScore;
+            : (isNaN(parseInt(currentScore)) ? 0 : currentScore);
 
     return (
         <div className="FICO-page">
@@ -206,7 +206,7 @@ export default function FICO() {
 
                     {/* main score card */}
                     <div className="col-12 col-lg-8">
-                        <FICOScoreCard ficoScore={currentScore} />
+                        <FICOScoreCard ficoScore={isNaN(parseInt(currentScore)) ? 0 : currentScore} />
                     </div>
 
                     {/* right / below section */}
