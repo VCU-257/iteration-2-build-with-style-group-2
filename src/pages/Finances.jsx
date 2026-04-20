@@ -3,7 +3,7 @@ import MobileTitleBar from "../components/MobileTitleBar";
 import FinancesCards from "../components/FinancesCards";
 import { Button } from "react-bootstrap";
 import "../styles/finances.css";
-import { useFicoScore } from "../hooks";
+import { useFicoScoreDetails } from "../hooks";
 
 export default function Finances() {
     const baseURL = import.meta.env.BASE_URL.includes("#") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}#/`;
@@ -13,7 +13,7 @@ export default function Finances() {
         document.title = "Finances";
     }, []);
 
-    const score = useFicoScore();
+    const scoreDetails = useFicoScoreDetails();
 
     return (
         <div className="finances-page ">
@@ -21,7 +21,7 @@ export default function Finances() {
             <div className="d-flex flex-column justify-content-center align-items-center mt-4">
                 <Button href={`${baseURL}finances/fico`} variant="outline-secondary" className="align-items-center justify-content-center d-flex flex-column" style={{ borderRadius: "50vh", height: "25vh", width: "25vh", border: "2px var(--secondary) solid" }}>
                 <h4 className="text-center " style={{ fontSize: "2vh", paddingInline: "2vw" }}>Your FICO Score:</h4>
-                <h2 className="p-0" style={{ fontSize: "7vh"}}>{score}</h2>
+                <h2 className="p-0" style={{ fontSize: "7vh"}}>{scoreDetails.score}</h2>
                 </Button>
                 <FinancesCards /> 
             </div>
