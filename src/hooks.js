@@ -47,7 +47,9 @@ export function useFicoScoreDetails() {
         utilizationImpact,
         historyImpact,
         mixImpact,
-        inquiryImpact
+        inquiryImpact,
+        mostNegativeImpact: "",
+        mostPositiveImpact: ""
     }
 
     for(let i = 0; i < Object.keys(output).length; i++) {
