@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { PlusCircle, Save } from "react-bootstrap-icons";
 import CreditAccountFieldset from "../components/CreditAccountFieldset";
 import MobileTitleBar from "../components/MobileTitleBar";
+import { usePageTitle } from "../hooks";
 import "../styles/account.css";
 
 export default function Account() {
@@ -56,9 +57,7 @@ export default function Account() {
     }
 
     /* Change the page title on page load */
-    useEffect(() => {
-        document.title = "Edit Account Info";
-    }, []);
+    usePageTitle("Edit Account Info");
 
     return (
         <div className="account-page">

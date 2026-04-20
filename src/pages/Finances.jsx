@@ -1,11 +1,9 @@
-import { useEffect } from "react";
 import "../styles/finances.css";
+import { usePageTitle } from "../hooks";
 
 export default function Finances() {
     /* Change the page title on page load */
-    useEffect(() => {
-        document.title = "Finances";
-    }, []);
+    usePageTitle("Finances");
 
     return (
         <div className="finances-page">

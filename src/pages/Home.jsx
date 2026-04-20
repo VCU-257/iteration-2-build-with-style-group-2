@@ -1,11 +1,9 @@
-import { useEffect } from "react";
+import { usePageTitle } from "../hooks";
 import "../styles/home.css";
 
 export default function Home() {
     /* Change the page title on page load */
-    useEffect(() => {
-        document.title = "Home";
-    }, []);
+    usePageTitle("Home");
 
     return (
         <div className="home-page">
