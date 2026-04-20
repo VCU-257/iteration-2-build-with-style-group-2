@@ -1,0 +1,54 @@
+.fico-bar {
+    height: 25px;
+    border-radius: 12px;
+    overflow: visible;
+    position: relative;
+    opacity: 0.8;
+/*background colors and the % being connected to the number*/
+
+    background: linear-gradient(
+        to right,
+        rgb(233, 0, 0) 0% 35%,
+        yellow 35% 50%,
+        green 50% 65%,
+        blue 65% 82%,
+        purple 82% 100%
+    );
+}
+
+/* Vertical line marker showing exact score */
+.fico-marker {
+    position: absolute;
+    opacity: 1;
+    top: -5px;
+    height: 36px;
+    width: 3px;
+    background: rgb(241, 241, 241);
+    border: .5px solid rgb(70, 53, 53);
+    z-index: 1;
+    transform: translateX(-50%);
+}
+
+
+.fico-labels {
+    position: relative;
+    height: 16px;
+    margin-bottom: 2px; /* close to the bar */
+    font-size: 11px;
+    color: gray;
+}
+/* keeps it lined up perfectly with the bar*/
+.fico-labels span {
+    position: absolute;
+    transform: translateX(-50%);
+}
+
+/* exact FICO range breakpoints 
+    needed because justify-gap isn't good enoguh
+*/
+.label-380 { left: 2%; transform: none; }
+.label-580 { left: 35%; }
+.label-670 { left: 50%; }
+.label-740 { left: 65%; }
+.label-800 { left: 82%; }
+.label-850 { left: 100%; transform: translateX(-100%); }
