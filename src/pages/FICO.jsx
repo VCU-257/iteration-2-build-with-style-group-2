@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import MobileTitleBar from "../components/MobileTitleBar";
 import Card from "react-bootstrap/Card";
 import "../styles/fico.css";
-import { useFicoScoreDetails } from "../hooks";
+import { useFicoScoreDetails, usePageTitle } from "../hooks";
 
 // SCORE CARD
 function FICOScoreCard({ ficoScore }) {
@@ -152,11 +152,8 @@ function CreditStrengthCard({ ficoDetails }) {
 
 // MAIN PAGE
 export default function FICO() {
-
-    // set page title on load
-    useEffect(() => {
-        document.title = "FICO Score Detail";
-    }, []);
+    /* Change the page title on page load */
+    usePageTitle("FICO Score Detail");
 
     // get full fico details from hook
     const ficoDetails = useFicoScoreDetails();
