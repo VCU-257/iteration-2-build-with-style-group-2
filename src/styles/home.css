@@ -1,0 +1,28 @@
+.home-page {
+    font-family: "Funnel Display", sans-serif;
+    background-color: #FCFCFC;
+    min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Montserrat", sans-serif;
+}
+
+.custom-navbar {
+    background-color: #78c2ad;
+}
+
+.action-link {
+    text-decoration: none;
+    color: #2C2C2C;
+}
+
+.action-card {
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.action-card:hover {
+    transform: translateY(-5px);
+    background-color: #f8f9fa;
+}
