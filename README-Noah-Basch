@@ -1,3 +1,29 @@
-Noah Basch 4-19-26
+@ -0,0 +1,24 @@
+# Student Name: Noah Basch
 
-#The FICO Score page displays a user’s current credit score, tracks score changes #over time, and provides insights into credit performance. The page is built using #React and Bootstrap, with dynamic updates based on calculated data from a shared #hook.
+## 1. My Assigned Work
+*List the specific HTML files, screens, or components you built based on your team's assignments in Table 3.*
+
+- FICO.jsx
+- Fico.css
+- I updated the Home.jsx to trying to incorporate ficoscore in there. 
+
+
+## 2. AI / LLM Usage
+*Did you use an AI tool to help write or debug your code?*
+* **What I asked the AI:** *(e.g., "How do I make a sticky footer in Bootstrap 5?")*
+* **How it helped & What I learned:** *(Explain the solution it provided and how you ensured you understood the code).*
+
+- How to translate HTML/Bootstrap layouts into JSX for React
+How to structure React components using Bootstrap cards and grid layout
+How to debug errors such as multiple default exports and rendering issues
+How to connect my UI to dynamic data (FICO score hook)
+
+- How it helped & What I learned:
+The AI helped me understand how to properly convert HTML into JSX by showing me key differences such as using className instead of class, removing <html> and <body> tags, and structuring components correctly. It also helped me debug issues in my React code, like fixing export errors and ensuring components were properly rendered.
+
+- Through this process, I learned how React components work, how to integrate dynamic data into the UI, and how to use Bootstrap within React effectively. I made sure I understood each change by testing the code, reviewing errors in the console, and applying the concepts myself across different components.
+
+## 3. Live Site Link
+*Provide the GitHub Pages link to the specific page(s) you built.*
+* **Live URL:** https://vcu-257.github.io/iteration-2-build-with-style-group-2/#/FICO
