@@ -1,0 +1,3 @@
+Noah Basch 4-19-26
+
+#The FICO Score page displays a user’s current credit score, tracks score changes #over time, and provides insights into credit performance. The page is built using #React and Bootstrap, with dynamic updates based on calculated data from a shared #hook.
