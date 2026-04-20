@@ -2,12 +2,15 @@ import { useEffect, useState } from "react";
 import MobileTitleBar from "../components/MobileTitleBar";
 import Card from "react-bootstrap/Card";
 import "../styles/fico.css";
-import { useFicoScore, useFicoScoreDetails } from "../hooks";
+import { useFicoScoreDetails } from "../hooks";
 
 // SCORE CARD
 function FICOScoreCard({ ficoScore }) {
+
+    // calculate marker position based on score
     const markerLeft = `${((ficoScore - 380) / (850 - 380)) * 100}%`;
 
+    // determine fico category label
     const getLabel = (score) => {
         if (score < 580) return "Poor";
         if (score < 670) return "Fair";
@@ -18,11 +21,14 @@ function FICOScoreCard({ ficoScore }) {
 
     return (
         <div className="card p-4 shadow-sm h-100">
+
+            {/* score value and label */}
             <div className="text-center mb-2">
                 <h2>{ficoScore}</h2>
                 <p>{getLabel(ficoScore)}</p>
             </div>
 
+            {/* fico scale labels */}
             <div className="fico-labels">
                 <span className="label-380">380</span>
                 <span className="label-580">580</span>
@@ -32,7 +38,10 @@ function FICOScoreCard({ ficoScore }) {
                 <span className="label-850">850</span>
             </div>
 
+            {/* colored score bar */}
             <div className="fico-bar position-relative mb-2">
+
+                {/* vertical marker showing exact score */}
                 <div className="fico-marker" style={{ left: markerLeft }}></div>
             </div>
         </div>
@@ -41,6 +50,8 @@ function FICOScoreCard({ ficoScore }) {
 
 // HISTORY CARD
 function FicoScoreHistory({ newScore, lastScore }) {
+
+    // determine score trend
     let trend = "";
 
     if (newScore > lastScore) {
@@ -52,26 +63,31 @@ function FicoScoreHistory({ newScore, lastScore }) {
     }
 
     return (
-        <Card className="shadow-sm p-3">
+        <Card className="shadow-sm p-3 h-100">
             <Card.Body>
+
+                {/* title */}
                 <Card.Title>FICO History</Card.Title>
+
+                {/* previous vs current score */}
                 <Card.Subtitle className="mb-2 text-muted">
                     Previous: {lastScore} → Current: {newScore}
                 </Card.Subtitle>
+
+                {/* trend display */}
                 <Card.Text>
                     Your credit score has been <strong>{trend}</strong>.
                 </Card.Text>
+
             </Card.Body>
         </Card>
     );
 }
 
-function CreditImprovementCard({ficoDetails}) {
+// LOWEST FACTOR CARD
+function CreditImprovementCard({ ficoDetails }) {
 
-    //  get real calculated data
-    const ficoDetails = useFicoScoreDetails();
-
-    // map internal keys → user-friendly labels
+    // find lowest impacting factor
     let label = "";
 
     if (ficoDetails.mostNegativeImpact === "paymentHistoryImpact") {
@@ -87,23 +103,24 @@ function CreditImprovementCard({ficoDetails}) {
     }
 
     return (
-        <Card className="p-3 shadow-sm">
+        <Card className="p-3 shadow-sm h-100">
             <Card.Body>
+
+                {/* title */}
                 <Card.Title>Needs Improvement</Card.Title>
 
+                {/* lowest factor */}
                 <h5 className="text-danger">{label}</h5>
+
             </Card.Body>
         </Card>
     );
 }
 
-export default CreditImprovementCard;
-function highestImpact({ficoDetails}) {
+// HIGHEST FACTOR CARD
+function CreditStrengthCard({ ficoDetails }) {
 
-    //  get real calculated data
-    const ficoDetails = useFicoScoreDetails();
-
-    // map internal keys → user-friendly labels
+    // find strongest contributing factor
     let label = "";
 
     if (ficoDetails.mostPositiveImpact === "paymentHistoryImpact") {
@@ -119,27 +136,31 @@ function highestImpact({ficoDetails}) {
     }
 
     return (
-        <Card className="p-3 shadow-sm">
+        <Card className="p-3 shadow-sm h-100">
             <Card.Body>
+
+                {/* title */}
                 <Card.Title>Strongest Factor</Card.Title>
 
+                {/* highest factor */}
                 <h5 className="text-success">{label}</h5>
+
             </Card.Body>
         </Card>
     );
 }
 
-export default highestImpact;
-
+// MAIN PAGE
 export default function FICO() {
+
+    // set page title on load
     useEffect(() => {
         document.title = "FICO Score Detail";
     }, []);
 
-    //full details from hook 
+    // get full fico details from hook
     const ficoDetails = useFicoScoreDetails();
     const currentScore = ficoDetails.score;
-    
 
     // load history from localStorage
     const [ficoHistory, setFicoHistory] = useState(() => {
@@ -147,17 +168,18 @@ export default function FICO() {
         return saved ? JSON.parse(saved) : [];
     });
 
-    //update history when score changes
+    // update history when score changes
     useEffect(() => {
         if (!currentScore) return;
 
         setFicoHistory((prev) => {
+
             // avoid duplicate entries
             if (prev[prev.length - 1] === currentScore) return prev;
 
             const updated = [...prev, currentScore];
 
-            //keep only last 15
+            // keep only last 15 scores
             if (updated.length > 15) {
                 updated.shift();
             }
@@ -166,57 +188,57 @@ export default function FICO() {
         });
     }, [currentScore]);
 
-    // save the history
+    // save history to localStorage
     useEffect(() => {
         localStorage.setItem("ficoHistory", JSON.stringify(ficoHistory));
     }, [ficoHistory]);
 
-    // get last score safely
+    // get previous score safely
     const lastScore =
         ficoHistory.length > 1
             ? ficoHistory[ficoHistory.length - 2]
             : currentScore;
 
-return (
-    <div className="FICO-page">
-        <MobileTitleBar pageTitle="FICO Score" />
+    return (
+        <div className="FICO-page">
 
-        <div className="container py-4">
-            <div className="row g-4 justify-content-center">
+            <MobileTitleBar pageTitle="FICO Score" />
 
-                {/* SCORE CARD */}
-                <div className="col-12 col-lg-8">
-                    <FICOScoreCard FICOScore={currentScore} />
-                </div>
+            <div className="container py-4">
+                <div className="row g-4 justify-content-center">
 
-                {/* below Section */}
-                <div className="col-12 col-lg-4">
-                    <div className="row g-4 justify-content-center">
-
-                        {/* fico history */}
-                        <div className="col-12 col-md-8 col-lg-12">
-                            <FicoScoreHistory
-                                NewScore={currentScore}
-                                lastScore={lastScore}
-                            />
-                        </div>
-
-                        {/* lowest stat */}
-                        <div className="col-12 col-md-6 col-lg-6">
-                            <CreditImprovementCard ficoDetails={ficoDetails} />
-                        </div>
-
-                        {/* highest stat */}
-                        <div className="col-12 col-md-6 col-lg-6">
-                            <CreditStrengthCard ficoDetails={ficoDetails} />
-                        </div>
-
+                    {/* main score card */}
+                    <div className="col-12 col-lg-8">
+                        <FICOScoreCard ficoScore={currentScore} />
                     </div>
-                </div>
 
+                    {/* right / below section */}
+                    <div className="col-12 col-lg-4">
+                        <div className="row g-4 justify-content-center">
+
+                            {/* history card */}
+                            <div className="col-12 col-md-8 col-lg-12">
+                                <FicoScoreHistory
+                                    newScore={currentScore}
+                                    lastScore={lastScore}
+                                />
+                            </div>
+
+                            {/* lowest factor */}
+                            <div className="col-12 col-md-6 col-lg-6">
+                                <CreditImprovementCard ficoDetails={ficoDetails} />
+                            </div>
+
+                            {/* highest factor */}
+                            <div className="col-12 col-md-6 col-lg-6">
+                                <CreditStrengthCard ficoDetails={ficoDetails} />
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
-    </div>
-
     );
 }
