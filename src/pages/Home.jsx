@@ -3,7 +3,7 @@ import "../styles/home.css";
 import MobileTitleBar from "../components/MobileTitleBar";
 
 export default function Home() {
-
+    const baseURL = import.meta.env.BASE_URL.includes("#") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}#/`;
     const [score, setScore] = useState(720);
 
     useEffect(() => {
@@ -51,7 +51,7 @@ export default function Home() {
                 <div className="row g-4 mb-5 text-center">
 
                     <div className="col-6 col-md-3">
-                        <a href="Finances.html" className="action-link">
+                        <a href={`${baseURL}finances`} className="action-link">
                             <div className="card p-3 action-card">
                                 <i className="bi bi-wallet fs-1 mb-2"></i>
                                 <h6>Finances</h6>
@@ -60,7 +60,7 @@ export default function Home() {
                     </div>
 
                     <div className="col-6 col-md-3">
-                        <a href="account-info.html" className="action-link">
+                        <a href={`${baseURL}account-info`}  className="action-link">
                             <div className="card p-3 action-card">
                                 <i className="bi bi-person fs-1 mb-2"></i>
                                 <h6>Accounts</h6>
@@ -108,7 +108,7 @@ export default function Home() {
             </div>
 
             {/* mobile navigation */}
-            <nav className="navbar fixed-bottom navbar-light bg-light d-lg-none border-top">
+            {/* <nav className="navbar fixed-bottom navbar-light bg-light d-lg-none border-top">
                 <div className="container-fluid d-flex justify-content-around text-center">
 
                     <a href="#" className="text-dark">
@@ -124,7 +124,7 @@ export default function Home() {
                     </a>
 
                 </div>
-            </nav>
+            </nav> */}
 
         </div>
     );
