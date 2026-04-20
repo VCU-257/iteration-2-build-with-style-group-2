@@ -62,7 +62,7 @@ export default function Account() {
     return (
         <div className="account-page">
             <MobileTitleBar pageTitle="Edit Account Information" backButton />
-            <Container fluid>
+            <Container>
                 <Form ref={formRef} validated>
                     {accountInfo.map((info, index) => <CreditAccountFieldset accountInfo={info} allAccountInfo={accountInfo} setAccountInfo={setAccountInfo} index={index} key={index} />)}
                     <h4>Additional Info</h4>
