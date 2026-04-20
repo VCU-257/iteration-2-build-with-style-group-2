@@ -156,13 +156,23 @@ export default function FICO() {
     usePageTitle("FICO Score Detail");
 
     // get full fico details from hook
+
+  
     const ficoDetails = useFicoScoreDetails();
-    const currentScore = ficoDetails.score;
+    
+      //fallback value change later! 
+      //if no fico details sets score to 720
+    const currentScore = 
+            typeof ficoDetails.score === "number"
+            ? ficoDetails.score : 720 ; 
 
     // load history from localStorage
     const [ficoHistory, setFicoHistory] = useState(() => {
         const saved = localStorage.getItem("ficoHistory");
-        return saved ? JSON.parse(saved) : [];
+        if (saved){
+            return saved ? JSON.parse(saved) : [];
+        }
+        return[300];      
     });
 
     // update history when score changes

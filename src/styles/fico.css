@@ -4,8 +4,8 @@
     overflow: visible;
     position: relative;
     opacity: 0.8;
-/*background colors and the % being connected to the number*/
 
+  /*background colors and the % being connected to the number*/
     background: linear-gradient(
         to right,
         rgb(233, 0, 0) 0% 35%,
@@ -13,6 +13,7 @@
         green 50% 65%,
         blue 65% 82%,
         purple 82% 100%
+        
     );
 }
 
