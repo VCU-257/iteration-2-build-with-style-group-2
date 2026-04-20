@@ -2,7 +2,7 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 import { Archive, House, PersonVcard } from "react-bootstrap-icons";
 
 export default function MobileNavbar() {
-    const baseURL = import.meta.env.BASE_URL;
+    const baseURL = import.meta.env.BASE_URL.includes("#") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}#/`;
 
     return (
         <Navbar bg="primary" expand="lg" className="d-lg-none mt-3 mobile-navbar" fixed="bottom">
