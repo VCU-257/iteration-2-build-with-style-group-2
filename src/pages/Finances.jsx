@@ -1,17 +1,14 @@
-import { useEffect } from "react";
-import MobileTitleBar from "../components/MobileTitleBar";
-import FinancesCards from "../components/FinancesCards";
 import { Button } from "react-bootstrap";
+import FinancesCards from "../components/FinancesCards";
+import MobileTitleBar from "../components/MobileTitleBar";
+import { useFicoScoreDetails, usePageTitle } from "../hooks";
 import "../styles/finances.css";
-import { useFicoScoreDetails } from "../hooks";
 
 export default function Finances() {
     const baseURL = import.meta.env.BASE_URL.includes("#") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}#/`;
 
     /* Change the page title on page load */
-    useEffect(() => {
-        document.title = "Finances";
-    }, []);
+    usePageTitle("Finances");
 
     const scoreDetails = useFicoScoreDetails();
 

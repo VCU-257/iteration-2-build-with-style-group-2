@@ -1,11 +1,9 @@
-import { useEffect } from "react";
 import "../styles/fico.css";
+import { usePageTitle } from "../hooks";
 
 export default function FICO() {
     /* Change the page title on page load */
-    useEffect(() => {
-        document.title = "FICO Score Detail";
-    }, []);
+    usePageTitle("FICO Score Detail");
 
     return (
         <div className="fico-page">
