@@ -12,8 +12,7 @@ export default function Home() {
     }, []);
 
     const ficoDetails = useFicoScoreDetails();
-    const score = 0;
-    score = ficoDetails.score;
+    const score = ficoDetails?.score ?? 0;
 
       const getLabel = (score) => {
         if (score < 580) return "Poor";
