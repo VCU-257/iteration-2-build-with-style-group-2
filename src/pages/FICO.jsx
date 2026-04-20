@@ -59,7 +59,7 @@ function FicoScoreHistory({ newScore, lastScore }) {
     } else if (newScore < lastScore) {
         trend = "decreasing";
     } else {
-        trend = "staying the same";
+        trend = "stable";
     }
 
     return (
