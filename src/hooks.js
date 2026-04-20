@@ -7,14 +7,13 @@ export function usePageTitle(newTitle) {
     }, []);
 }
 
-export function useFicoScore() {
+export function useFicoScoreDetails() {
     const savedAccountInfo = JSON.parse(localStorage.getItem("accountInfo"));
     const savedAdditionalInfo = JSON.parse(localStorage.getItem("additionalInfo"));
     const LOWEST_POSSIBLE_SCORE = 300;
     const HIGHEST_POSSIBLE_SCORE = 850;
     let score = LOWEST_POSSIBLE_SCORE; // Base score
     let data = compileAccountInfo(savedAccountInfo, savedAdditionalInfo);
-    console.log(data)
 
     // 1. Payment History (35%) - Impact: 0 to 200 points
     let paymentHistoryImpact = data.missedPayments > 0 ? 100 - (data.missedPayments * 20) : 150;
@@ -36,9 +35,36 @@ export function useFicoScore() {
     // 5. New Credit (10%) - Impact: 0 to 50 points
     let inquiryImpact = 50 - (data.recentInquiries * 10);
     score += Math.max(0, inquiryImpact);
-    console.log(score)
 
-    return Math.min(HIGHEST_POSSIBLE_SCORE, Math.max(LOWEST_POSSIBLE_SCORE, Math.round(score)));
+    score = Math.min(HIGHEST_POSSIBLE_SCORE, Math.max(LOWEST_POSSIBLE_SCORE, Math.round(score)));
+
+    const mostNegativeImpactValue = Math.min(paymentHistoryImpact, utilizationImpact, historyImpact, mixImpact, inquiryImpact);
+    const mostPositiveImpactValue = Math.max(paymentHistoryImpact, utilizationImpact, historyImpact, mixImpact, inquiryImpact);
+
+    const output = {
+        score,
+        paymentHistoryImpact,
+        utilizationImpact,
+        historyImpact,
+        mixImpact,
+        inquiryImpact,
+        mostNegativeImpact: "",
+        mostPositiveImpact: ""
+    }
+
+    for(let i = 0; i < Object.keys(output).length; i++) {
+        const currentKey = Object.keys(output)[i];
+        if(output[currentKey] === mostNegativeImpactValue) {
+            output["mostNegativeImpact"] = currentKey;
+        }
+        if(output[currentKey] === mostPositiveImpactValue) {
+            output["mostPositiveImpact"] = currentKey;
+        }
+    }
+
+    console.log(output);
+
+    return output;
 }
 
 function compileAccountInfo(allAccountInfo, additionalInfo) {
