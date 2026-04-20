@@ -12,8 +12,7 @@ export default function Home() {
     }, []);
 
     const ficoDetails = useFicoScoreDetails();
-    const score = 0;
-    score = ficoDetails.score;
+    const score = isNaN(parseInt(ficoDetails.score)) ? 0 : ficoDetails.score;
 
       const getLabel = (score) => {
         if (score < 580) return "Poor";
@@ -107,7 +106,9 @@ export default function Home() {
 
                     <h4 className="mb-3">Your Credit Score</h4>
                     <div className="display-1 fw-bold text-primary">
-                        {score}
+                        {isNaN(parseInt(ficoDetails.score)) ? 
+                            <p className="fs-4 fw-normal">{ficoDetails.score}</p> : 
+                            ficoDetails.score}
                     </div>
                     <p className="text-muted mb-3">
                         {getLabel(score)} standing
