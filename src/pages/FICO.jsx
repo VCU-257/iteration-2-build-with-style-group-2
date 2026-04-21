@@ -6,7 +6,7 @@ import { useFicoScoreDetails, usePageTitle } from "../hooks";
 
 // SCORE CARD
 function FICOScoreCard({ ficoScore }) {
-    const hasScore = typeof ficoScore === "number";
+    const hasScore = !isNaN(parseInt(ficoScore));
 
     // calculate marker position based on score
     const markerLeft = hasScore
