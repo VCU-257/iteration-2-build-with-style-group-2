@@ -65,7 +65,7 @@ export default function Home() {
                     </div>
 
                     <div className="col-6 col-md-3">
-                        <a href={`${baseURL}account-info`} className="action-link">
+                        <a href={`${baseURL}account`} className="action-link">
                             <div className="card p-3 action-card">
                                 <i className="bi bi-person fs-1 mb-2"></i>
                                 <h6>Accounts</h6>
