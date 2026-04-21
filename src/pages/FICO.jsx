@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import MobileTitleBar from "../components/MobileTitleBar";
 import Card from "react-bootstrap/Card";
 import "../styles/fico.css";
-import { useFicoScoreDetails, usePageTitle } from "../hooks";
+import { useFicoScoreDetails, usePageTitle, useResetScrolling } from "../hooks";
 
 // SCORE CARD
 function FICOScoreCard({ ficoScore }) {
@@ -168,23 +168,19 @@ function CreditStrengthCard({ ficoDetails }) {
 export default function FICO() {
     /* Change the page title on page load */
     usePageTitle("FICO Score Detail");
+    useResetScrolling();
 
     // get full fico details from hook
-
-  
     const ficoDetails = useFicoScoreDetails();
     
-      //fallback value change later! 
-      //if no fico details sets score to 720
+    //fallback value change later! 
+    //if no fico details sets score to 720
     const currentScore = ficoDetails.score;
 
     // load history from localStorage
     const [ficoHistory, setFicoHistory] = useState(() => {
         const saved = localStorage.getItem("ficoHistory");
-        if (saved){
-            return saved ? JSON.parse(saved) : [];
-        }
-        return[300];      
+        return saved ? JSON.parse(saved) : [300];
     });
 
     // update history when score changes
@@ -192,7 +188,6 @@ export default function FICO() {
         if (isNaN(parseInt(currentScore))) return;
 
         setFicoHistory((prev) => {
-
             // avoid duplicate entries
             if (prev[prev.length - 1] === currentScore) return prev;
 
@@ -207,7 +202,7 @@ export default function FICO() {
         });
     }, [currentScore]);
 
-    // save history to localStorage
+    // save history to localStorage when it changes
     useEffect(() => {
         localStorage.setItem("ficoHistory", JSON.stringify(ficoHistory));
     }, [ficoHistory]);
@@ -220,9 +215,7 @@ export default function FICO() {
 
     return (
         <div className="FICO-page">
-
             <MobileTitleBar pageTitle="FICO Score" />
-
             <div className="container py-4">
                 <div className="row g-4 justify-content-center">
 
@@ -234,7 +227,6 @@ export default function FICO() {
                     {/* right / below section */}
                     <div className="col-12 col-lg-4">
                         <div className="row g-4 justify-content-center">
-
                             {/* history card */}
                             <div className="col-12 col-md-8 col-lg-12">
                                 <FicoScoreHistory
@@ -252,10 +244,8 @@ export default function FICO() {
                             <div className="col-12 col-md-6 col-lg-6">
                                 <CreditStrengthCard ficoDetails={ficoDetails} />
                             </div>
-
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

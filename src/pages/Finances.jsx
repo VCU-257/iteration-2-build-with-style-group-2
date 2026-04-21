@@ -1,7 +1,7 @@
 import { Button } from "react-bootstrap";
 import FinancesCards from "../components/FinancesCards";
 import MobileTitleBar from "../components/MobileTitleBar";
-import { useFicoScoreDetails, usePageTitle } from "../hooks";
+import { useFicoScoreDetails, usePageTitle, useResetScrolling } from "../hooks";
 import "../styles/finances.css";
 
 export default function Finances() {
@@ -9,6 +9,7 @@ export default function Finances() {
 
     /* Change the page title on page load */
     usePageTitle("Finances");
+    useResetScrolling();
 
     const scoreDetails = useFicoScoreDetails();
 

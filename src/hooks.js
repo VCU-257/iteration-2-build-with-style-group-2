@@ -7,6 +7,12 @@ export function usePageTitle(newTitle) {
     }, []);
 }
 
+export function useResetScrolling() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
+}
+
 export function useFicoScoreDetails() {
     const savedAccountInfo = JSON.parse(localStorage.getItem("accountInfo"));
     const savedAdditionalInfo = JSON.parse(localStorage.getItem("additionalInfo"));

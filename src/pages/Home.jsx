@@ -1,15 +1,12 @@
-import { useEffect } from "react";
 import "../styles/home.css";
 import MobileTitleBar from "../components/MobileTitleBar";
-import { useFicoScoreDetails } from "../hooks";
+import { useFicoScoreDetails, usePageTitle, useResetScrolling } from "../hooks";
 
 export default function Home() {
     const baseURL = import.meta.env.BASE_URL.includes("#") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}#/`;
 
-
-    useEffect(() => {
-        document.title = "Home";
-    }, []);
+    usePageTitle("Home");
+    useResetScrolling();
 
     const ficoDetails = useFicoScoreDetails();
     const score = isNaN(parseInt(ficoDetails.score)) ? 0 : ficoDetails.score;

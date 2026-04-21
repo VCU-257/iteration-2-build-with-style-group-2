@@ -40,7 +40,7 @@ export default function CreditAccountFieldset({accountInfo, setAccountInfo, inde
               placeholder="Enter Account Name"
               onChange={handleInputChange}
               name="accountName"
-              className="text-dark fw-bold fs-4 text-truncate"
+              className="text-dark fw-bold fs-4 text-truncate text-decoration-underline"
               plaintext
             />
           </Col>

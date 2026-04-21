@@ -3,7 +3,7 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { PlusCircle, Save } from "react-bootstrap-icons";
 import CreditAccountFieldset from "../components/CreditAccountFieldset";
 import MobileTitleBar from "../components/MobileTitleBar";
-import { usePageTitle } from "../hooks";
+import { usePageTitle, useResetScrolling } from "../hooks";
 import "../styles/account.css";
 
 export default function Account() {
@@ -58,6 +58,7 @@ export default function Account() {
 
     /* Change the page title on page load */
     usePageTitle("Edit Account Info");
+    useResetScrolling();
 
     return (
         <div className="account-page">
