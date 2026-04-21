@@ -162,9 +162,7 @@ export default function FICO() {
     
       //fallback value change later! 
       //if no fico details sets score to 720
-    const currentScore = 
-            typeof ficoDetails.score === "number"
-            ? ficoDetails.score : 720 ; 
+    const currentScore = ficoDetails.score;
 
     // load history from localStorage
     const [ficoHistory, setFicoHistory] = useState(() => {
@@ -216,7 +214,9 @@ export default function FICO() {
 
                     {/* main score card */}
                     <div className="col-12 col-lg-8">
-                        <FICOScoreCard ficoScore={isNaN(parseInt(currentScore)) ? 0 : currentScore} />
+                        {typeof currentScore === "number" && (
+                            <FICOScoreCard ficoScore={currentScore} />
+                        )}
                     </div>
 
                     {/* right / below section */}
