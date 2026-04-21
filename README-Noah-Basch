@@ -6,7 +6,7 @@
 
 - FICO.jsx
 - Fico.css
-- I updated the Home.jsx to trying to incorporate ficoscore in there. 
+- I updated the Home.jsx to trying to incorporate ficoscore using our React code in hooks and copied a function from fico.jsx
 
 
 ## 2. AI / LLM Usage

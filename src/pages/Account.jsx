@@ -14,7 +14,7 @@ export default function Account() {
         return savedAccountInfo !== null
             ? JSON.parse(savedAccountInfo)
             : [{
-                accountName: "Credit Account",
+                accountName: "Credit Account Name",
                 limit: 0,
                 balance: 0,
                 apr: 0,
@@ -39,7 +39,7 @@ export default function Account() {
 
     function handleAddFieldset() {
         setAccountInfo([...accountInfo, {
-            accountName: "Credit Account",
+            accountName: "Credit Account Name",
             limit: 0,
             balance: 0,
             apr: 0,
@@ -62,7 +62,7 @@ export default function Account() {
     return (
         <div className="account-page">
             <MobileTitleBar pageTitle="Edit Account Information" backButton />
-            <Container fluid>
+            <Container>
                 <Form ref={formRef} validated>
                     {accountInfo.map((info, index) => <CreditAccountFieldset accountInfo={info} allAccountInfo={accountInfo} setAccountInfo={setAccountInfo} index={index} key={index} />)}
                     <h4>Additional Info</h4>
