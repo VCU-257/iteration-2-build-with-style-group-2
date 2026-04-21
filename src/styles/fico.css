@@ -3,7 +3,7 @@
     border-radius: 12px;
     overflow: visible;
     position: relative;
-    opacity: 0.8;
+    opacity: 0.68;
 
   /*background colors and the % being connected to the number*/
     background: linear-gradient(
@@ -47,9 +47,9 @@
 /* exact FICO range breakpoints 
     needed because justify-gap isn't good enoguh
 */
-.label-380 { left: 2%; transform: none; }
+.label-380 { left: 1%; transform: none; }
 .label-580 { left: 35%; }
 .label-670 { left: 50%; }
 .label-740 { left: 65%; }
 .label-800 { left: 82%; }
-.label-850 { left: 100%; transform: translateX(-100%); }
+.label-850 { left: 99%; transform: translateX(-100%); }
