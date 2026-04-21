@@ -6,9 +6,12 @@ import { useFicoScoreDetails, usePageTitle } from "../hooks";
 
 // SCORE CARD
 function FICOScoreCard({ ficoScore }) {
+    const hasScore = typeof ficoScore === "number";
 
     // calculate marker position based on score
-    const markerLeft = `${((ficoScore - 380) / (850 - 380)) * 100}%`;
+    const markerLeft = hasScore
+    ? `${((ficoScore - 380) / (850 - 380)) * 100}%`
+    : "0%"; //no score
 
     // determine fico category label
     const getLabel = (score) => {
@@ -22,10 +25,19 @@ function FICOScoreCard({ ficoScore }) {
     return (
         <div className="card p-4 shadow-sm h-100">
 
-            {/* score value and label */}
+            {/* score or empty state */}
             <div className="text-center mb-2">
-                <h2>{ficoScore}</h2>
-                <p>{getLabel(ficoScore)}</p>
+                {hasScore ? (
+                    <>
+                        <h2>{ficoScore}</h2>
+                        <p>{getLabel(ficoScore)}</p>
+                    </>
+                ) : (
+                    <>
+                        <h2>—</h2>
+                        <p>No credit score history</p>
+                    </>
+                )}
             </div>
 
             {/* fico scale labels */}
@@ -41,8 +53,10 @@ function FICOScoreCard({ ficoScore }) {
             {/* colored score bar */}
             <div className="fico-bar position-relative mb-2">
 
-                {/* vertical marker showing exact score */}
+                {/* vertical marker showing exact score checks if it has a score to draw a marker*/}
+                {hasScore && (
                 <div className="fico-marker" style={{ left: markerLeft }}></div>
+                )}
             </div>
         </div>
     );
@@ -214,9 +228,7 @@ export default function FICO() {
 
                     {/* main score card */}
                     <div className="col-12 col-lg-8">
-                        {typeof currentScore === "number" && (
-                            <FICOScoreCard ficoScore={currentScore} />
-                        )}
+                        <FICOScoreCard ficoScore={currentScore} />
                     </div>
 
                     {/* right / below section */}
